@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 # 일부 클라우드 환경(예: 무료 티어)에서 NumPy/scikit-learn이 사용하는 BLAS 라이브러리의
 # 멀티스레딩으로 인해 드물게 발생할 수 있는 충돌을 방지하기 위한 안전 설정입니다.
@@ -52,7 +53,8 @@ set_korean_font()
 # -------------------------------------------------------------------
 @st.cache_data
 def load_data() -> pd.DataFrame:
-    df = sns.load_dataset("titanic")
+    data_path = Path(__file__).resolve().parent / "data" / "titanic.csv"
+    df = pd.read_csv(data_path)
     # 예측에 사용할 핵심 컬럼만 남기고, 결측치가 있는 행은 모델 학습 시 별도로 처리합니다.
     return df
 
