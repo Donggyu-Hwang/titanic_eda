@@ -10,6 +10,7 @@ Use these files as the Streamlit Cloud Main file path, in order, to isolate the 
 1. `diagnostics/03_local_data.py`
 1. `diagnostics/04_model_train.py`
 1. `diagnostics/05_full_smoke.py`
+1. `diagnostics/06_predict_click_only.py`
 
 If a stage crashes, the issue is in that stage or earlier. If a stage loads, move to the next one.
 
@@ -21,4 +22,5 @@ If a stage crashes, the issue is in that stage or earlier. If a stage loads, mov
 - If `02` works but `03` crashes, the issue is local file access or the dataset path.
 - If `03` works but `04` crashes, the issue is the scikit-learn training stack.
 - If only `05` crashes, the issue is in the full combination of imports, plotting, and model training.
+- If `05` works but `06` crashes, the issue is specifically in the button-click prediction path.
 - If all stages pass but `streamlit_app.py` still crashes, the remaining problem is in the main app logic or its rerun behavior.
