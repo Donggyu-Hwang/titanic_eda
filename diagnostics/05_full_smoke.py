@@ -49,7 +49,7 @@ preprocessor = ColumnTransformer(
 model = Pipeline(
     steps=[
         ("preprocessor", preprocessor),
-        ("classifier", LogisticRegression(max_iter=1000)),
+        ("classifier", LogisticRegression(solver="liblinear", max_iter=200)),
     ]
 )
 
