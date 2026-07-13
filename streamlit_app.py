@@ -34,7 +34,7 @@ st.set_page_config(page_title="타이타닉 생존 확률 예측기", page_icon=
 # -------------------------------------------------------------------
 @st.cache_resource
 def set_korean_font():
-    candidates = ["NanumGothic", "Malgun Gothic", "AppleGothic", "NanumBarunGothic"]
+    candidates = ["Noto Sans CJK KR", "NanumGothic", "Malgun Gothic", "AppleGothic", "NanumBarunGothic"]
     installed = {f.name for f in fm.fontManager.ttflist}
     for font in candidates:
         if font in installed:
@@ -165,10 +165,11 @@ with tab_eda:
     with c2:
         st.write("**성별 생존율**")
         fig, ax = plt.subplots(figsize=(5, 4))
-        sns.barplot(data=df, x="sex", y="survived", ax=ax, color="#C44E52")
+        sns.barplot(data=df, x="sex", y="survived", ax=ax, color="#C44E52", order=["male", "female"])
         ax.set_xlabel("성별")
         ax.set_ylabel("생존율")
-        ax.set_xticklabels(["남성" if t.get_text() == "male" else "여성" for t in ax.get_xticklabels()])
+        ax.set_xticks([0, 1])
+        ax.set_xticklabels(["남성", "여성"])
         ax.set_ylim(0, 1)
         st.pyplot(fig)
         plt.close(fig)
